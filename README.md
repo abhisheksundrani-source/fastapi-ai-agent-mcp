@@ -1,11 +1,10 @@
-#FastAPI AI Agent MCP
-
+# FastAPI AI Agent MCP
 An AI Agent API built with FastAPI that integrates OpenAI LLMs and MCP (Model Context Protocol) tools.
 The agent decides whether to answer directly or call an external tool, processes results, and returns a final response.
 
 ---
 
-##🚀 Flow
+## 🚀 Flow
 - User Input → Sent to /chat endpoint.
 - Decision Phase → LLM (gpt-4o-mini) decides:
 - ANSWER:response → Direct answer.
@@ -16,21 +15,21 @@ The agent decides whether to answer directly or call an external tool, processes
 
 ---
 
-##🎲 Randomness
+## 🎲 Randomness
 - Temperature: 0.2
 - Low randomness → deterministic, concise, and reliable responses.
 - Ensures consistent tool invocation decisions.
 
 ---
 
-##🧠 Model in Use
+## 🧠 Model in Use
 - OpenAI GPT-4o-mini
 - Optimized for speed and cost.
 - Used for both decision-making and final response generation.
 
 ---
 
-##🏗️ Architecture
+## 🏗️ Architecture
 ```
 FastAPI (REST API)
    │
@@ -54,7 +53,7 @@ FastAPI (REST API)
 
 ---
 
-##📦 Tech Stack & Libraries
+## 📦 Tech Stack & Libraries
 - FastAPI → API framework
 - OpenAI Python SDK → LLM integration
 - httpx → Async HTTP client
@@ -63,7 +62,7 @@ FastAPI (REST API)
 
 ---
 
-##🔧 Scope of Improvements
+## 🔧 Scope of Improvements
 - Add memory/context persistence (conversation history).
 - Support multiple tools orchestration.
 - Implement error handling & retries for MCP calls.
@@ -73,7 +72,7 @@ FastAPI (REST API)
 
 ---
 
-##📖 Example Usage
+## 📖 Example Usage
 Request
 ```http
 curl -X POST "http://localhost:8000/chat" \
@@ -90,7 +89,7 @@ Possible Response
 
 ---
 
-##📌 Summary
+## 📌 Summary
 This project demonstrates:
 - LLM-driven decision-making (answer vs tool call).
 - MCP integration for external tool execution.
