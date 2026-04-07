@@ -1,5 +1,5 @@
 from app.llm import call_llm
-from app.mcp_client import call_tool
+from app.mcp_client import call_tool, get_registered_tools
 
 async def run_agent(user_input: str):
     

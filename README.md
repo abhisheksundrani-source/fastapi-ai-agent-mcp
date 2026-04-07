@@ -5,13 +5,31 @@ The agent decides whether to answer directly or call an external tool, processes
 ---
 
 ## 🚀 Flow
-- User Input → Sent to /chat endpoint.
-- Decision Phase → LLM (gpt-4o-mini) decides:
-- ANSWER:response → Direct answer.
-- TOOL:tool_name:input → Calls external tool.
-- Tool Execution → MCP client executes tool via HTTP.
-- Finalization → LLM refines tool output into user-facing response.
-- Response → Returned as JSON.
+1. User Input → Sent to `/chat` endpoint.
+2. Decision Phase → LLM (`gpt-4o-mini`) decides:
+   - `ANSWER:response` → Direct answer.
+   - `TOOL:tool_name:input` → Calls external tool.
+3. Tool Execution → MCP client executes tool via HTTP.
+4. Finalization → LLM refines tool output into user-facing response.
+5. Response → Returned as JSON.
+
+---
+
+## 📂 Project Structure
+```
+fastapi-ai-agent-mcp/ 
+├── app/ 
+│   ├── agent.py 
+│   ├── llm.py 
+│   ├── main.py 
+│   ├── mcp_client.py 
+│   ├── mcp_server.py 
+│   ├── schemas.py 
+│   └── tests/ 
+├── README.md 
+├── requirements.txt
+└── test_main.py
+```
 
 ---
 
@@ -72,7 +90,21 @@ FastAPI (REST API)
 
 ---
 
+## ▶️ Running Commands
+Start MCP server:
+```bash
+uvicorn app.mcp_server:app --reload --port 8001
+```
+
+Start Agent API:
+```bash
+uvicorn app.main:app --reload --port 8000
+```
+---
+
 ## 📖 Example Usage
+## 📡 Sample Requests
+Chat
 Request
 ```http
 curl -X POST "http://localhost:8000/chat" \
@@ -87,6 +119,18 @@ Possible Response
 }
 ```
 
+MCP Tool
+Request
+```http
+curl -X POST http://127.0.0.1:8001/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"tool":"weather","input":"Bengaluru"}'
+```
+
+Response
+```json
+{"result":{"location":"Bengaluru","forecast":"Sunny, 32°C"}}
+```
 ---
 
 ## 📌 Summary
