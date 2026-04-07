@@ -4,3 +4,5 @@ openai
 httpx
 python-dotenv
 pydantic
+pytest
+pytest-asyncio
